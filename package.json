@@ -1,0 +1,11 @@
+{
+    "name": "video-app",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "4.17.1",
+        "ejs": "2.x"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    }
+}

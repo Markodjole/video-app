@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>webrtc course to make video chat</h1>
+    <video src=""  autoplay></video>
+
+    <script>
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        const constraints = {audio:true, video:true};
+        const videoArea = document.querySelector("video");
+       
+        const onSuccess = (stream) => {
+            console.log("we have stream");
+            const mediaSource = new MediaSource();
+            const video = document.createElement('video');
+            // Older browsers may not have srcObject
+            if ('src' in video) {
+              video.src = mediaSource;
+            } else {
+              // Avoid using this in new browsers, as it is going away.
+              video.src = URL.createObjectURL(mediaSource);
+            }
+            // videoArea.src = window.URL.createObjectURL(stream);
+            videoArea.play();
+        }
+        const onError = (error) => console.log("error with getusermedia", error)
+
+        navigator.getUserMedia(constraints, onSuccess, onError);
+    </script>
+</body>
+</html>
