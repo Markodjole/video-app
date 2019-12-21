@@ -16,17 +16,16 @@
         const videoArea = document.querySelector("video");
        
         const onSuccess = (stream) => {
-            console.log("we have stream");
-            const mediaSource = new MediaSource();
-            const video = document.createElement('video');
+            console.log("we have stream", stream);
             // Older browsers may not have srcObject
-            if ('src' in video) {
-              video.src = mediaSource;
+            if ('srcObject' in videoArea) {
+              videoArea.srcObject = stream;
             } else {
               // Avoid using this in new browsers, as it is going away.
-              video.src = URL.createObjectURL(mediaSource);
+              videoArea.src = URL.createObjectURL(stream);
             }
             // videoArea.src = window.URL.createObjectURL(stream);
+            debugger
             videoArea.play();
         }
         const onError = (error) => console.log("error with getusermedia", error)
